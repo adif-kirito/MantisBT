@@ -34,6 +34,7 @@ Update authentication plugin for root user
 sudo mysql -u root
 ```
 <br>
+
 ```mysql
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';
 ```
