@@ -84,55 +84,89 @@ CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
 <br>
 
 <!-- ----------------------------------------------------- -->
-## Step 1: Install Apache2, PHP and Database Server
+## Step 2: Download and Install Mantis Mantis Bug Tracker
 
+###Download package to your Ubuntu
+```
+wget https://sourceforge.net/projects/mantisbt/files/latest/download
+```
+<br>
 
+###Unzip the package
+```
+unzip download
+```
+<br>
 
+###Move the folder to /var/www/mantis directory
+```
+mv mantisbt-2.21.1 /var/www/mantis
+```
+<br>
 
+###Set proper permissions for the directory
+```
+chown -R www-data.www-data /var/www/mantis
+```
+```
+chmod -R 755 /var/www/mantis
+```
+<br>
+
+###Create Apache Virtual Host file for Mantis Bug Tracker
+```
+sudo vim /etc/apache2/sites-available/mantis.conf
+```
+`
+<VirtualHost *:80>
+        DocumentRoot "/var/www/mantis"
+        ServerName IP
+        <Directory /var/www/mantis>
+                allowOverride all
+                allow from all
+        </Directory>
+</VirtualHost>
+`
+```
+a2dissite 000-default.conf
+```
+```
+a2ensite mantis.conf
+```
+```
+a2enmod rewrite
+```
+<br>
+
+Restart apache2 service
+```
+systemctl restart apache2
+```
+<br>
 
 <!-- ----------------------------------------------------- -->
-## SSH
+## Step 3: Configure smtp in mantis config file
 
 ```
-hydra -l <username> -P <full path to pass> MACHINE_IP -t 4 ssh
+cd /var/www/mantis/config
 ```
-<br>
-
-| Option |               Description              |
-|:------:|:--------------------------------------:|
-|  `-l`  | specifies the (SSH) username for login |
-|  `-P`  |      indicates a list of passwords     |
-|  `-t`  |   sets the number of threads to spawn  |
-
-<br>
-
-Example: hydra -l root -P passwords.txt MACHINE_IP -t 4 ssh
-
-<br><br>
-
-<!-- ----------------------------------------------------- -->
-## Post Web Form
-
 ```
-hydra <username> <wordlist> MACHINE_IP http-post-form "<path>:<login_credentials>:<invalid_response>"
+sudo vi config_inc.php
 ```
 <br>
 
-|        Option        |                                        Description                                       |
-|:--------------------:|:----------------------------------------------------------------------------------------:|
-|         `-l`         |                             the username for (web form) login                            |
-|         `-P`         |                                 the password list to use                                 |
-|   `http-post-form`   |                               the type of the form is POST                               |
-|       `<path>`       |                       the login page URL, for example, `login.php`                       |
-|  `login_credentials>` | the username and password used to log in, for example, `username=^USER^&password=^PASS^` |
-| `<invalid_response>` |                         part of the response when the login fails                        |
-|         `-v`         |                             verbose output for every attempt                             |
+`
+$g_allow_signup  = ON;
+$g_enable_email_notification = ON;
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
+$g_smtp_host = 'smtp.gmail.com';
+$g_smtp_connection_mode = 'tls';
+$g_smtp_port = 587;
+$g_smtp_username = 'test@gmail.com'; //your email address
+$g_smtp_password = 'abc'; //your app generate password, refer method 1(https://www.cubebackup.com/blog/how-to-use-google-smtp-service-to-send-emails-for-free/)
+$g_administrator_email = 'test@gmail.com'; //your email address
+$g_log_level = LOG_EMAIL | LOG_EMAIL_RECIPIENT | LOG_FILTERING | LOG_AJAX;
+$g_log_destination = "file:/var/www/mantis/mantisbt.log";
+`
 
-<br>
-
-Example: hydra -l <username> -P <wordlist> MACHINE_IP http-post-form "/:username=^USER^&password=^PASS^:F=incorrect" -V
-<br><br>
-
-## Acknowledgments
-
-* TryHackMe - Hydra (https://tryhackme.com/room/hydra)
+#Screenshot
