@@ -29,40 +29,62 @@ sudo apt install mariadb-server mariadb-client
 ```
 <br>
 
-Update authentication plugin for root user
+###Update authentication plugin for root user
 ```
 sudo mysql -u root
 ```
 <br>
 
-```mmysql
+```mysql
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';
 ```
-```mmysql
+```mysql
 FLUSH PRIVILEGES;
 ```
-```mmysql
+```mysql
 QUIT;
 ```
 <br>
 
-Secure database server
+###Secure database server
 ```
 sudo mysql_secure_installation
 ```
 Change root password, and only select Y
 <br>
 
-Login to the MariaDB shell
+###Login to the MariaDB shell
 ```
 mysql -u root -p
 ```
 <br>
 
-Create a database and user for MantisBT
-```mmysql
-CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY '**_changePassword_**';
+###Create a database and user for MantisBT
+```mysql
+CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
 ```
+```mysql
+CREATE DATABASE mantisbt;
+```
+```mysql
+GRANT ALL PRIVILEGES ON mantisbt.* TO 'mantisbt'@'localhost';
+```
+```mysql
+FLUSH PRIVILEGES;
+```
+```mysql
+QUIT
+```
+<br>
+
+###Check if you can log in to Database shell as mantisbt user
+```
+CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
+```
+<br>
+
+<!-- ----------------------------------------------------- -->
+## Step 1: Install Apache2, PHP and Database Server
 
 
 
