@@ -118,7 +118,6 @@ chmod -R 755 /var/www/mantis
 sudo vim /etc/apache2/sites-available/mantis.conf
 ```
 ```
-{
 <VirtualHost *:80>
         DocumentRoot "/var/www/mantis"
         ServerName IP
@@ -127,7 +126,6 @@ sudo vim /etc/apache2/sites-available/mantis.conf
                 allow from all
         </Directory>
 </VirtualHost>
-}
 ```
 ```
 a2dissite 000-default.conf
@@ -157,7 +155,7 @@ sudo vi config_inc.php
 ```
 <br>
 
-`
+```
 $g_allow_signup  = ON;
 $g_enable_email_notification = ON;
 $g_phpMailer_method = PHPMAILER_METHOD_SMTP;
@@ -169,6 +167,6 @@ $g_smtp_password = 'abc'; //your app generate password, refer method 1(https://w
 $g_administrator_email = 'test@gmail.com'; //your email address
 $g_log_level = LOG_EMAIL | LOG_EMAIL_RECIPIENT | LOG_FILTERING | LOG_AJAX;
 $g_log_destination = "file:/var/www/mantis/mantisbt.log";
-`
+```
 
 #Screenshot
