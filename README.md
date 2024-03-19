@@ -35,9 +35,36 @@ sudo mysql -u root
 ```
 <br>
 
-```mariadb
+```mmysql
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';
 ```
+```mmysql
+FLUSH PRIVILEGES;
+```
+```mmysql
+QUIT;
+```
+<br>
+
+Secure database server
+```
+sudo mysql_secure_installation
+```
+Change root password, and only select Y
+<br>
+
+Login to the MariaDB shell
+```
+mysql -u root -p
+```
+<br>
+
+Create a database and user for MantisBT
+```mmysql
+CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY '**_changePassword_**';
+```
+
+
 
 
 
