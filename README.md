@@ -117,7 +117,8 @@ chmod -R 755 /var/www/mantis
 ```
 sudo vim /etc/apache2/sites-available/mantis.conf
 ```
-`
+```
+{
 <VirtualHost *:80>
         DocumentRoot "/var/www/mantis"
         ServerName IP
@@ -126,7 +127,8 @@ sudo vim /etc/apache2/sites-available/mantis.conf
                 allow from all
         </Directory>
 </VirtualHost>
-`
+}
+```
 ```
 a2dissite 000-default.conf
 ```
