@@ -168,5 +168,11 @@ $g_administrator_email = 'test@gmail.com'; //your email address
 $g_log_level = LOG_EMAIL | LOG_EMAIL_RECIPIENT | LOG_FILTERING | LOG_AJAX;
 $g_log_destination = "file:/var/www/mantis/mantisbt.log";
 ```
+<br>
 
+<!-- ----------------------------------------------------- -->
 #Screenshot
+
+![Alt text](https://github.com/adif-kirito/MantisBT/blob/main/pic/login.PNG)
+<br>
+![Alt text](https://github.com/adif-kirito/MantisBT/blob/main/pic/index.PNG)
