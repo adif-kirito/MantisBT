@@ -35,7 +35,7 @@ sudo mysql -u root
 ```
 <br>
 
-```mysql
+```mariadb
 UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';
 ```
 
