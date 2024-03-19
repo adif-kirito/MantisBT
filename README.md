@@ -6,7 +6,7 @@ Mantis Bug Tracker installation on Ubuntu
 <!-- ----------------------------------------------------- -->
 ## Step 1: Install Apache2, PHP and Database Server
 
-###Install PHP dependencies
+### Install PHP dependencies
 ```
 sudo apt update
 ```
@@ -17,19 +17,19 @@ sudo apt install vim wget php php-cli php-fpm php-mysql php-zip php-gd php-mbstr
 ```
 <br>
 
-###Install Apache2 Web Server
+### Install Apache2 Web Server
 ```
 sudo apt -y install apache2
 ```
 <br>
 
-###Install MariaDB database server
+### Install MariaDB database server
 ```
 sudo apt install mariadb-server mariadb-client
 ```
 <br>
 
-###Update authentication plugin for root user
+### Update authentication plugin for root user
 ```
 sudo mysql -u root
 ```
@@ -46,14 +46,14 @@ QUIT;
 ```
 <br>
 
-###Secure database server
+### Secure database server
 ```
 sudo mysql_secure_installation
 ```
 Change root password, and only select Y
 <br>
 
-###Login to the MariaDB shell
+### Login to the MariaDB shell
 ```
 mysql -u root -p
 ```
@@ -77,7 +77,7 @@ QUIT
 ```
 <br>
 
-###Check if you can log in to Database shell as mantisbt user
+### Check if you can log in to Database shell as mantisbt user
 ```
 CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
 ```
@@ -86,25 +86,25 @@ CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
 <!-- ----------------------------------------------------- -->
 ## Step 2: Download and Install Mantis Mantis Bug Tracker
 
-###Download package to your Ubuntu
+### Download package to your Ubuntu
 ```
 wget https://sourceforge.net/projects/mantisbt/files/latest/download
 ```
 <br>
 
-###Unzip the package
+### Unzip the package
 ```
 unzip download
 ```
 <br>
 
-###Move the folder to /var/www/mantis directory
+### Move the folder to /var/www/mantis directory
 ```
 mv mantisbt-2.21.1 /var/www/mantis
 ```
 <br>
 
-###Set proper permissions for the directory
+### Set proper permissions for the directory
 ```
 chown -R www-data.www-data /var/www/mantis
 ```
@@ -113,7 +113,7 @@ chmod -R 755 /var/www/mantis
 ```
 <br>
 
-###Create Apache Virtual Host file for Mantis Bug Tracker
+### Create Apache Virtual Host file for Mantis Bug Tracker
 ```
 sudo vim /etc/apache2/sites-available/mantis.conf
 ```
@@ -171,8 +171,9 @@ $g_log_destination = "file:/var/www/mantis/mantisbt.log";
 <br>
 
 <!-- ----------------------------------------------------- -->
-#Screenshot
+# Screenshot
 
 ![Alt text](https://github.com/adif-kirito/MantisBT/blob/main/pic/login.PNG)
+<br>
 <br>
 ![Alt text](https://github.com/adif-kirito/MantisBT/blob/main/pic/index.PNG)
