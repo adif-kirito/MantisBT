@@ -6,6 +6,7 @@ Mantis Bug Tracker installation on Ubuntu
 <!-- ----------------------------------------------------- -->
 ## Step 1: Install Apache2, PHP and Database Server
 
+###Install PHP dependencies
 ```
 sudo apt update
 ```
@@ -15,6 +16,29 @@ sudo apt update
 sudo apt install vim wget php php-cli php-fpm php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
 ```
 <br>
+
+###Install Apache2 Web Server
+```
+sudo apt -y install apache2
+```
+<br>
+
+###Install MariaDB database server
+```
+sudo apt install mariadb-server mariadb-client
+```
+<br>
+
+Update authentication plugin for root user
+```
+sudo mysql -u root
+```
+<br>
+```mysql
+UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';
+```
+
+
 
 <!-- ----------------------------------------------------- -->
 ## SSH
