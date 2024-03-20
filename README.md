@@ -59,7 +59,7 @@ mysql -u root -p
 ```
 <br>
 
-###Create a database and user for MantisBT
+### Create a database and user for MantisBT
 ```mysql
 CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
 ```
@@ -79,7 +79,7 @@ QUIT
 
 ### Check if you can log in to Database shell as mantisbt user
 ```
-CREATE USER 'mantisbt'@'localhost' IDENTIFIED BY 'changePassword';
+mysql -u mantisbt -p
 ```
 <br>
 
